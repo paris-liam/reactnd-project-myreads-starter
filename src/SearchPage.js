@@ -5,17 +5,18 @@ import {Link} from 'react-router-dom';
 class SearchPage extends React.Component{
   state={
     search:'',
-    bookList:[]
+    bookList:[],
+    searchError:false,
   }
-  search(term){
-    let search_results = BooksAPI.search(term);
+  async search(term){
+    let search_results = await BooksAPI.search(term);
     this.setState({
       search:term,
-      bookList:search_results
+      bookList:search_results,
+      searchError:search_results.hasOwnProperty('error')
     })
   }
   render() {
-    {console.log(BooksAPI.search('k'))}
     return (
     <div className="search-books">
     <div className="search-books-bar">
@@ -26,7 +27,7 @@ class SearchPage extends React.Component{
     </div>
     <div className="search-books-results">
       <ol className="books-grid">
-        {this.state.bookList.map((book)=>{<Book info={book}/>})}
+        {this.state.searchError ? (<h2>No Results!</h2>):(this.state.bookList.map((book)=>{<Book info={book}/>}))}
       </ol>
     </div>
   </div>)
