@@ -4,19 +4,12 @@ import * as BooksAPI from './BooksAPI';
 import Book from './Book'
 
 class MainPage extends React.Component{
-state = {
-  current_shelf:[],
-  want_shelf:[],
-  read_shelf:[],
-}
+
 async componentDidMount() {
- let book_data = await BooksAPI.getAll();
-  this.setState({
-    current_shelf: book_data.filter(bookinfo => bookinfo.shelf==="currentlyReading"),
-    want_shelf: book_data.filter(bookinfo => bookinfo.shelf==="wantToRead"),
-    read_shelf: book_data.filter(bookinfo => bookinfo.shelf==="read"),
-  })
+  await this.props.updateShelves();
+  console.log('mounted')
 }
+
   render() {
     return (
       <div className="app">
@@ -30,7 +23,7 @@ async componentDidMount() {
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      {this.state.current_shelf.map((book_info)=><Book key={book_info.id} info={book_info}/>)}
+                      {this.props.current.map((book_info)=><Book key={book_info.id} info={book_info} updateShelves={this.props.updateShelves}/>)}
                     </ol>
                   </div>
                 </div>
@@ -38,7 +31,7 @@ async componentDidMount() {
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      {this.state.want_shelf.map((book_info)=><Book key={book_info.id} info={book_info}/>)}
+                      {this.props.want.map((book_info)=><Book key={book_info.id} info={book_info} updateShelves={this.props.updateShelves}/>)}
                     </ol>
                   </div>
                 </div>
@@ -46,7 +39,7 @@ async componentDidMount() {
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                    {this.state.read_shelf.map((book_info)=><Book key={book_info.id} info={book_info}/>)}
+                    {this.props.read.map((book_info)=><Book key={book_info.id} info={book_info} updateShelves={this.props.updateShelves}/>)}
                     </ol>
                   </div>
                 </div>
