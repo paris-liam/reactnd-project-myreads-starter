@@ -7,11 +7,11 @@ class Book extends React.Component{
         title:this.props.info.title,
         id:this.props.info.id,
         authors:this.props.info.authors,
-
+        image: ''
         shelf:this.props.info.shelf,
     }
     componentDidMount() {
-        if(this.props.info.imageLinks === undefined){
+        if(this.props.info.imageLinks === undefined){//fixes issue where default props weren't working
             this.setState({
                 image:'',
             })
@@ -29,7 +29,6 @@ class Book extends React.Component{
         console.log('updated')
     }
     render(){
-        console.log(this.state);
         return(
             <li>
             <div className="book">

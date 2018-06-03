@@ -5,7 +5,6 @@ import SearchPage from './SearchPage';
 import MainPage from './MainPage';
 import * as BooksAPI from './BooksAPI';
 
-
 class BooksApp extends React.Component{
   state = {
     current_shelf:[],
