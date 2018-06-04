@@ -7,7 +7,7 @@ class Book extends React.Component{
         title:this.props.info.title,
         id:this.props.info.id,
         authors:this.props.info.authors,
-        image: ''
+        image: '',
         shelf:this.props.info.shelf,
     }
     componentDidMount() {
