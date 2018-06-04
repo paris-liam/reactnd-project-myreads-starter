@@ -3,26 +3,19 @@ import * as BooksAPI from './BooksAPI';
 import PropTypes from 'prop-types'
 import BooksApp from './App';
 class Book extends React.Component{
-    state={
-        title:this.props.info.title,
-        id:this.props.info.id,
-        authors:this.props.info.authors,
-        image: '',
-        shelf:this.props.info.shelf,
+    constructor(props){
+        super(props);
+        let temp_image =  this.props.info.imageLinks !== undefined ? (this.props.info.imageLinks.thumbnail):(undefined)
+        this.state={
+            title:this.props.info.title,
+            id:this.props.info.id,
+            authors:this.props.info.authors,
+            image: temp_image,
+            shelf:this.props.info.shelf,
+        };
     }
-    componentDidMount() {
-        if(this.props.info.imageLinks === undefined){//fixes issue where default props weren't working
-            this.setState({
-                image:'',
-            })
-        }
-        else{
-            this.setState({
-                image:this.props.info.imageLinks.thumbnail,
-            })
 
-        }
-    }
+
     async updateStatus(newShelf){
         await BooksAPI.update(this.state,newShelf)
         await this.props.updateShelves();
