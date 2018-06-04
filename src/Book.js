@@ -1,7 +1,6 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import PropTypes from 'prop-types'
-import BooksApp from './App';
 class Book extends React.Component{
     constructor(props){
         super(props);
