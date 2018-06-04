@@ -10,14 +10,14 @@ class BooksApp extends React.Component{
     current_shelf:[],
     want_shelf:[],
     read_shelf:[],
-  }
+  };
   async updateShelves() {
     let book_data = await BooksAPI.getAll();
     this.setState({
         want_shelf: book_data.filter(bookinfo => bookinfo.shelf==="wantToRead"),
         read_shelf: book_data.filter(bookinfo => bookinfo.shelf==="read"),
         current_shelf: book_data.filter(bookinfo => bookinfo.shelf==="currentlyReading")
-      });
+    });
   }
   render(){
   return(
