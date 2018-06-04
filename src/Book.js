@@ -14,9 +14,8 @@ class Book extends React.Component{
         };
 
     }
-
-
     async updateStatus(newShelf){
+        this.setState({shelf:newShelf})
         await BooksAPI.update(this.state,newShelf)
         await this.props.updateShelves();
         console.log('updated')
