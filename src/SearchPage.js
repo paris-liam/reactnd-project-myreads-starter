@@ -29,7 +29,7 @@ class SearchPage extends React.Component{
     <div className="search-books-bar">
       <Link className="close-search" to='/'>Close</Link>
       <div className="search-books-input-wrapper">
-        <input type="text" onChange={(e) => this.searchBooks(e.target.value)} placeholder="Search by title or author"/>
+        <input type="text" onChange={(e) => this.searchBooks(e.target.value.trim())} placeholder="Search by title or author"/>
       </div>
     </div>
     <div className="search-books-results">
