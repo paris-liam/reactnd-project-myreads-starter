@@ -24,7 +24,7 @@ class BooksApp extends React.Component{
     <BrowserRouter>
       <Switch>
         <Route exact path='/' render={(props) => <MainPage current={this.state.current_shelf} want={this.state.want_shelf} read={this.state.read_shelf} updateShelves={this.updateShelves.bind(this)} />} />
-        <Route exact path='/search' render={(props) => <SearchPage current={this.state.current_shelf} want={this.state.want_shelf} read={this.state.read_shelf} updateShelves={this.updateShelves.bind(this)}  />} />
+        <Route exact path='/search' render={(props) => <SearchPage shelfList={this.state.want_shelf.concat(this.state.read_shelf,this.state.current_shelf)} updateShelves={this.updateShelves.bind(this)}  />} />
         <Route render={MainPage} />{/*if link is not found, takes to main page*/}
       </Switch>
     </BrowserRouter>

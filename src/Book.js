@@ -5,13 +5,12 @@ class Book extends React.Component{
     constructor(props){
         super(props);
         let temp_image =  this.props.info.imageLinks !== undefined ? (this.props.info.imageLinks.thumbnail):(undefined)
-        let shelf = (this.props.info.shelf != undefined ? (this.props.info.shelf):('no_shelf'))
         this.state={
             title:this.props.info.title,
             id:this.props.info.id,
             authors:this.props.info.authors,
             image: temp_image,
-            shelf:shelf
+            shelf:this.props.info.shelf
         };
 
     }

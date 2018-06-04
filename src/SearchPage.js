@@ -3,15 +3,22 @@ import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 class SearchPage extends React.Component{
-  state={
-    bookList:[],
+  constructor(props){
+    super(props);
+    this.state={
+      bookList:[],
+    }
   }
   componentDidMount() {
-    this.searchBooks('')
+    this.props.updateShelves()
   }
   async searchBooks(term){
     if( term !== ''){
       let search_results = await BooksAPI.search(term);
+      search_results.map((book) =>{
+          let shelf = this.props.shelfList.find((shelfBook)=>shelfBook.id === book.id)
+          book.shelf = (shelf !== undefined ? (shelf.shelf):('no_shelf'))
+      })
       this.setState({
         bookList:search_results,
       });
@@ -22,6 +29,9 @@ class SearchPage extends React.Component{
         },
       );
     }
+  }
+  addShelfStatus(list){
+
   }
   render() {
     return (

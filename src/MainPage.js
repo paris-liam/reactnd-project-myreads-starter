@@ -4,11 +4,6 @@ import Book from './Book'
 
 class MainPage extends React.Component{
 
-async componentDidMount() {
-  await this.props.updateShelves();
-  console.log('mounted')
-}
-
   render() {
     return (
       <div className="app">
